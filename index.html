@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pyramid of Pandemonium 🎪</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🎪 Pyramid of Pandemonium 🎩</h1>
+    <p>Visualize how acrobats (numbers) get in perfect height order!</p>
+  </header>
+
+  <div class="controls">
+    <label>Algorithm:</label>
+    <select id="algorithm">
+      <option value="bubble">Bubble Sort</option>
+      <option value="insertion">Insertion Sort</option>
+      <option value="selection">Selection Sort</option>
+    </select>
+
+    <label>Array Size:</label>
+    <input type="range" id="size" min="5" max="50" value="20">
+
+    <label>Speed:</label>
+    <input type="range" id="speed" min="50" max="1000" value="200">
+
+    <button id="generate">🎲 Generate Array</button>
+    <button id="sort">🚀 Start Sort</button>
+  </div>
+
+  <main>
+    <div id="bar-container"></div>
+  </main>
+
+  <section id="info-box">
+    <h3>🧠 Step Explanation:</h3>
+    <p id="explanation">Click "Generate Array" to begin!</p>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
+ 
