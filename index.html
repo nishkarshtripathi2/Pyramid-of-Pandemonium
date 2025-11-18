@@ -24,11 +24,20 @@
     <label>Array Size:</label>
     <input type="range" id="size" min="5" max="50" value="20">
 
-    <label>Speed:</label>
-    <input type="range" id="speed" min="50" max="1000" value="200">
+    <label>Speed (ms):</label>
+    <input type="range" id="speed" min="20" max="1000" value="200">
 
     <button id="generate">🎲 Generate Array</button>
     <button id="sort">🚀 Start Sort</button>
+  </div>
+
+  <!-- CUSTOM ARRAY INPUT -->
+  <div class="custom-array-box">
+    <input 
+      type="text" 
+      id="customArrayInput" 
+      placeholder="Enter numbers (e.g. 10, 5, 2, 8)">
+    <button id="useCustomArray">Use Custom Array</button>
   </div>
 
   <main>
@@ -36,11 +45,33 @@
   </main>
 
   <section id="info-box">
-    <h3>🧠 Step Explanation:</h3>
-    <p id="explanation">Click "Generate Array" to begin!</p>
+
+    <div class="explain-row">
+      <h3>🧠 Step Explanation:</h3>
+      <p id="explanation">Click "Generate Array" to begin!</p>
+    </div>
+
+    <div id="stats">
+      <div class="stat">
+        <div class="stat-title">🔁 Comparisons</div>
+        <div id="compCount" class="stat-value">0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-title">🔄 Swaps / Moves</div>
+        <div id="swapCount" class="stat-value">0</div>
+      </div>
+      <div class="stat">
+        <div class="stat-title">⏱ Time</div>
+        <div id="timeCount" class="stat-value">0.00s</div>
+      </div>
+    </div>
+
+    <div class="controls-bottom">
+      <button id="resetStats">♻️ Reset Stats</button>
+    </div>
+
   </section>
 
   <script src="script.js"></script>
 </body>
 </html>
- 
