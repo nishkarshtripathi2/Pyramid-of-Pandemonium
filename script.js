@@ -475,6 +475,86 @@ async function heapSort() {
   explanation.textContent = "Array sorted with Heap Sort! 🎉";
 }
 
+/* -----------------------------------------------------------
+                      RADIX SORT (ADVANCED)
+------------------------------------------------------------*/
+
+// Helper: Get maximum number in array
+function getMax(arr) {
+  let max = arr[0];
+  for (let num of arr) {
+    if (num > max) max = num;
+  }
+  return max;
+}
+
+// Counting sort for each digit place (exp = 1, 10, 100, ...)
+async function countingSort(exp) {
+  const bars = document.getElementsByClassName("bar");
+
+  let output = new Array(array.length).fill(0);
+  let count = new Array(10).fill(0);
+
+  // Step 1 — Count occurrences
+  for (let i = 0; i < array.length; i++) {
+    let digit = Math.floor(array[i] / exp) % 10;
+
+    bars[i].style.background = "yellow";
+    incComparisons();
+    await sleep(speed);
+
+    count[digit]++;
+    bars[i].style.background = "cyan";
+  }
+
+  // Step 2 — Prefix sum (cumulative count)
+  for (let i = 1; i < 10; i++) {
+    count[i] += count[i - 1];
+  }
+
+  // Step 3 — Build output array (stable sort)
+  for (let i = array.length - 1; i >= 0; i--) {
+    let digit = Math.floor(array[i] / exp) % 10;
+
+    output[count[digit] - 1] = array[i];
+    count[digit]--;
+
+    incSwaps();
+  }
+
+  // Step 4 — Copy output to original array
+  for (let i = 0; i < array.length; i++) {
+    array[i] = output[i];
+    bars[i].style.height = `${array[i]}px`;
+
+    bars[i].style.background = "red";
+    await sleep(speed);
+    bars[i].style.background = "cyan";
+  }
+}
+
+// FULL Radix Sort
+async function radixSort() {
+  explanation.textContent = "Radix Sort: Sorting digit by digit.";
+  startTimer();
+
+  let maxNum = getMax(array);
+
+  for (let exp = 1; Math.floor(maxNum / exp) > 0; exp *= 10) {
+    explanation.textContent = `Sorting by digit place: ${exp}`;
+    await countingSort(exp);
+  }
+
+  // mark sorted
+  const bars = document.getElementsByClassName("bar");
+  for (let i = 0; i < array.length; i++) {
+    bars[i].style.background = "lime";
+  }
+
+  stopTimer();
+  explanation.textContent = "Array sorted using Radix Sort! 🎉";
+}
+
 
 
 
@@ -534,12 +614,15 @@ sortBtn.addEventListener("click", async () => {
   else if (algorithm === "quick") await quickSort(0, array.length - 1);
   else if (algorithm === "merge") await mergeSort(0, array.length - 1);
   else if (algorithm === "heap") await heapSort();
+  else if (algorithm === "radix") await radixSort();
+
 
 
 
   sortBtn.disabled = false;
   setControlsDisabled(false);
 });
+
 
 // Reset stats manually
 resetStatsBtn.addEventListener("click", resetStats);
