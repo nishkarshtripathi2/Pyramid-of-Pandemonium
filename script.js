@@ -46,8 +46,11 @@ sizeSlider.addEventListener("input", () => {
 });
 
 speedSlider.addEventListener("input", () => {
-  speed = parseInt(speedSlider.value);
+  const max = 1000;
+  const min = 20;
+  speed = max - speedSlider.value + min;  
 });
+
 
 // Utility delay
 function sleep(ms) {
